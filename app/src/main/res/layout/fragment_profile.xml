@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/black">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/redhat_medium"
+                android:text="Akun Saya"
+                android:textColor="#565D70"
+                android:textSize="@dimen/_14sdp"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/rellay1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_170sdp"
+                android:background="@drawable/bg_alert">
+
+                <RelativeLayout
+                    android:id="@+id/imgUser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_10sdp">
+
+                    <ImageView
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/icon_photo"></ImageView>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/txtUsername"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgUser"
+                    android:layout_centerHorizontal="true"
+                    android:text="John Doe"
+                    android:fontFamily="@font/redhat_medium"
+                    android:textColor="@color/green_main"
+                    android:textSize="@dimen/_15sdp"
+                    android:textStyle="bold"></TextView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/rellay2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_below="@+id/rellay1">
+
+                <LinearLayout
+                    android:id="@+id/LLakun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:text="Akun"
+                        android:fontFamily="@font/redhat_medium"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LLmyakun"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/LLakun">
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.06">
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_my_account"
+                                app:tint="@color/grey_dark" />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/edtTmpt"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView2"
+                            android:layout_alignLeft="@+id/textView2"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.18"
+                            android:fontFamily="@font/redhat_medium"
+                            android:text="Akun Saya"
+                            android:textSize="@dimen/_11sdp"/>
+
+                        <ImageView
+                            android:id="@+id/btnAkunsaya"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:layout_weight="0.05"
+                            android:rotation="180"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_back" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/underline1"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/LLmyakun"
+                    android:layout_marginHorizontal="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:background="@color/underline"></View>
+
+                <LinearLayout
+                    android:id="@+id/LLlaporan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/underline1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.06">
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_25sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_my_report"
+                                app:tint="@color/grey_dark"  />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView2"
+                            android:layout_alignLeft="@+id/textView2"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.18"
+                            android:fontFamily="@font/redhat_medium"
+                            android:text="Laporan Saya"
+                            android:textSize="@dimen/_11sdp"/>
+
+                        <ImageView
+                            android:id="@+id/btnLaporansaya"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:layout_weight="0.05"
+                            android:rotation="180"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_back" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/LLlaporan"
+                    android:layout_marginHorizontal="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:background="@color/underline"></View>
+
+                <LinearLayout
+                    android:id="@+id/LLlainnya"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/underline2"
+                    android:layout_marginTop="@dimen/_10sdp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_20sdp"
+                        android:text="Lainnya"
+                        android:fontFamily="@font/redhat_medium"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold"></TextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/LLsandi"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/underline1">
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.06">
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_lock"
+                                app:tint="@color/grey_dark"  />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView2"
+                            android:layout_alignLeft="@+id/textView2"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.18"
+                            android:fontFamily="@font/redhat_medium"
+                            android:text="Ganti Kata Sandi"
+                            android:textSize="@dimen/_11sdp"/>
+
+                        <ImageView
+                            android:id="@+id/btnSandi"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:layout_weight="0.05"
+                            android:rotation="180"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_back" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_below="@+id/LLlaporan"
+                    android:layout_marginHorizontal="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_12sdp"
+                    android:background="@color/underline"></View>
+
+                <LinearLayout
+                    android:id="@+id/LLKeluar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/underline1">
+
+                    <LinearLayout
+                        android:id="@+id/linearlayout7"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.06">
+
+                            <ImageView
+                                android:layout_width="@dimen/_15sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:layout_centerInParent="true"
+                                android:src="@drawable/ic_logout"
+                                app:tint="@color/grey_dark"  />
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/textView2"
+                            android:layout_alignLeft="@+id/textView2"
+                            android:layout_gravity="center"
+                            android:layout_weight="0.18"
+                            android:fontFamily="@font/redhat_medium"
+                            android:text="Keluar"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <ImageView
+                            android:id="@+id/btnKeluar"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_11sdp"
+                            android:layout_weight="0.05"
+                            android:rotation="180"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_back" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</RelativeLayout>

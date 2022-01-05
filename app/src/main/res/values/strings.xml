@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Sphere</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="register"><u>Daftar</u></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!--    FONT-->
+    <string name="font_redhat">redhat</string>
+    <integer name="font_style_regular">11</integer>
+    <integer name="font_style_light">12</integer>
+    <integer name="font_style_semibold">13</integer>
+    <integer name="font_style_bold">14</integer>
+    <!--    -->
+
+    <string name="mapbox_access_token">pk.eyJ1Ijoia2xlbnRpbmdyIiwiYSI6ImNrcTFhMmEwYzA4MGYydXFzdzRocnVxZm4ifQ.2BaSyLr8v05mNtGEumIDQQ</string>
+    <string name="open_weather_id">aaa15a12666526e9887d5cdc82d1824b</string>
+    <string name="one_signal_id">e9975c35-1ed4-49ea-9603-6de734fbd4a1</string>
+</resources>

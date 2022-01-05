@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.profile.MyReportActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
+        android:background="@color/white"
+        android:minHeight="?attr/actionBarSize"
+        app:titleTextColor="@android:color/black"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/_15sdp"
+                android:layout_height="@dimen/_13sdp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_back" />
+
+            <RelativeLayout
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/rounded_form_grey"
+                android:paddingHorizontal="@dimen/_5sdp">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="wrap_content" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.scwang.wave.MultiWaveHeader
+            android:id="@+id/waveHeader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleY="-1"
+            app:mwhVelocity="1"
+            app:mwhProgress="0.5"
+            app:mwhGradientAngle="45"
+            app:mwhWaveHeight="@dimen/_30sdp"
+            app:mwhColorAlpha="0.45"
+            app:mwhStartColor="@color/green_main"
+            app:mwhCloseColor="@color/green_light"
+            app:mwhWaves="MultiWave"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:fontFamily="@font/redhat_regular"
+                android:text="Ketinggian Air"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/tvHeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/redhat_medium"
+                android:layout_gravity="center"
+                android:text="0"
+                android:textStyle="bold"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_30sdp" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:fontFamily="@font/redhat_medium"
+                android:layout_gravity="center"
+                android:text="(Status)"
+                android:textColor="@color/grey_dark"
+                android:textSize="@dimen/_18sdp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
