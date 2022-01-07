@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/imgUser"
                     android:layout_centerHorizontal="true"
-                    android:text="John Doe"
+                    android:text="-"
                     android:fontFamily="@font/redhat_medium"
                     android:textColor="@color/green_main"
                     android:textSize="@dimen/_15sdp"
@@ -159,6 +159,13 @@
                     android:background="@color/underline"></View>
 
                 <LinearLayout
+                    android:id="@+id/layLaporan"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                <LinearLayout
                     android:id="@+id/LLlaporan"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -215,6 +222,8 @@
                     android:layout_marginTop="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_12sdp"
                     android:background="@color/underline"></View>
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:id="@+id/LLlainnya"

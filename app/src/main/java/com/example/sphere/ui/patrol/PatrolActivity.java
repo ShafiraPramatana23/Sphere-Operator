@@ -56,7 +56,7 @@ public class PatrolActivity extends AppCompatActivity {
         ImageView ivBack = findViewById(R.id.ivBack);
         recyclerView = findViewById(R.id.rv);
 
-        adapter = new PatrolAdapter(list);
+        adapter = new PatrolAdapter(list, "");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PatrolActivity.this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);

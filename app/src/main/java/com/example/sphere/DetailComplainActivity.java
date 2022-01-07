@@ -2,16 +2,20 @@ package com.example.sphere;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +25,10 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.example.sphere.ui.complain.Teknisi;
+import com.example.sphere.ui.complain.adapter.TeknisiSpinnerAdapter;
+import com.example.sphere.ui.home.adapter.RiverSpinnerAdapter;
+import com.example.sphere.ui.lapor.adapter.SpinnerAdapter;
 import com.example.sphere.ui.profile.MyReportActivity;
 import com.example.sphere.ui.profile.model.MyReportList;
 import com.example.sphere.util.DateFormatter;
@@ -33,6 +41,7 @@ import org.json.JSONObject;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -43,6 +52,11 @@ public class DetailComplainActivity extends AppCompatActivity {
     private String token = "";
     private String id = "";
     private String type = "";
+    private String selectedTeknisi = "";
+
+    TeknisiSpinnerAdapter adapterSpinTeknisi;
+
+    private ArrayList<Teknisi> listTeknisi = new ArrayList<>();;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +73,8 @@ public class DetailComplainActivity extends AppCompatActivity {
         RelativeLayout btnSolving = findViewById(R.id.btnSolving);
         LinearLayout llDetailSolving = findViewById(R.id.llDetailSolving);
 
+        getTeknisi();
+
         if(type.equals("admin")){
             btnAssigned.setVisibility(View.VISIBLE);
             btnSolving.setVisibility(View.GONE);
@@ -72,8 +88,7 @@ public class DetailComplainActivity extends AppCompatActivity {
 //        Intent intent = getIntent();
 //        id = intent.getStringExtra("id");
 
-        Integer id = 4;
-
+        id = String.valueOf(4);
         getDataList(4);
 
         ImageView ivBack = findViewById(R.id.ivBacks);
@@ -84,6 +99,101 @@ public class DetailComplainActivity extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        btnAssigned.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialogAssignTask();
+            }
+        });
+    }
+
+    private void dialogAssignTask() {
+        final Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.dialog_assign_task);
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        Window window = dialog.getWindow();
+        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        RelativeLayout rlSubmit = dialog.findViewById(R.id.btnSubmit);
+        Spinner spin = dialog.findViewById(R.id.spinner);
+
+        adapterSpinTeknisi = new TeknisiSpinnerAdapter(this, R.layout.item_spinner, listTeknisi);
+        spin.setAdapter(adapterSpinTeknisi);
+        spin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedTeknisi = listTeknisi.get(position).getId();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        rlSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                actionSendTask();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void actionSendTask() {
+        final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Meng-assign tugas ....");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setIndeterminate(false);
+        progressDialog.show();
+        String uRl = "api/report/assign/"+id;
+        StringRequest request = new StringRequest(Request.Method.POST,
+                uRl,
+                (String response) -> {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        if (jsonObject.getBoolean("isError")) {
+                            Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
+                        } else {
+                            Intent m = new Intent(this, AlertActivity.class);
+                            m.putExtra("menu", "assign");
+                            startActivity(m);
+                            finish();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(this, "Gagal meng-assign tugas", Toast.LENGTH_SHORT).show();
+                    }
+                    progressDialog.dismiss();
+                }, error -> {
+            Toast.makeText(this, "Gagal meng-assign tugas", Toast.LENGTH_SHORT).show();
+            progressDialog.dismiss();
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                HashMap<String, String> param = new HashMap<>();
+                param.put("assigned_id", selectedTeknisi);
+                return param;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
+        request.setRetryPolicy(
+                new DefaultRetryPolicy(10000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getmInstance(this).addToRequestQueue(request);
     }
 
     private void getDataList(int id) {
@@ -228,14 +338,56 @@ public class DetailComplainActivity extends AppCompatActivity {
                 addToRequestQueue(request);
     }
 
-    public String convertDate(String dt) {
-        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat fmt2 = new SimpleDateFormat("dd MMM yyyy HH:ss", new Locale("ID"));
-        try {
-            Date date = fmt.parse(dt);
-            return fmt2.format(date);
-        } catch(ParseException pe) {
-            return "Date";
-        }
+    private void getTeknisi() {
+        /*final ProgressDialog progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Tunggu ....");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setIndeterminate(false);
+        progressDialog.show();*/
+        String uRl = "https://sphere-apps.herokuapp.com/api/teknisi";
+        StringRequest request = new StringRequest(Request.Method.GET,
+                uRl,
+                (String response) -> {
+                    try {
+                        JSONArray arrRes = new JSONArray(response);
+                        for (int i = 0; i < arrRes.length(); i++) {
+                            JSONObject obj = arrRes.getJSONObject(i);
+                            String id = obj.getString("id");
+                            String name = obj.getString("name");
+
+                            listTeknisi.add(new Teknisi(id, name));
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        System.out.println("tess " + e.toString());
+                    }
+//                    progressDialog.dismiss();
+                }, error -> {
+            try {
+                String body = new String(error.networkResponse.data, "UTF-8");
+                System.out.println("bods " + body);
+                Toast.makeText(DetailComplainActivity.this, body, Toast.LENGTH_SHORT).show();
+            } catch (UnsupportedEncodingException e) {
+                System.out.println("tessa " + e.toString());
+                // exception
+            }
+//            progressDialog.dismiss();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Accept", "application/json");
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
+        request.setRetryPolicy(
+                new DefaultRetryPolicy(10000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getmInstance(DetailComplainActivity.this).
+                addToRequestQueue(request);
     }
 }

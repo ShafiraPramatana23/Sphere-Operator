@@ -23,9 +23,11 @@ import java.util.ArrayList;
 public class PatrolAdapter extends RecyclerView.Adapter<PatrolAdapter.UserViewHolder> {
     private ArrayList<Patrol> dataList;
     private Context context;
+    private String type;
 
-    public PatrolAdapter(ArrayList<Patrol> dataList) {
+    public PatrolAdapter(ArrayList<Patrol> dataList, String type) {
         this.dataList = dataList;
+        this.type = type;
     }
 
     @NonNull
@@ -67,6 +69,14 @@ public class PatrolAdapter extends RecyclerView.Adapter<PatrolAdapter.UserViewHo
             }
         } else {
             holder.tvStatus.setText("");
+        }
+
+        if (type.equals("home")) {
+            holder.ivBack.setVisibility(View.GONE);
+            holder.ivBack.setEnabled(false);
+        } else {
+            holder.ivBack.setVisibility(View.VISIBLE);
+            holder.ivBack.setEnabled(true);
         }
 
         if (!dataList.get(position).getExpandable()) {

@@ -102,8 +102,7 @@ public class FormScanActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                sendPatrol();
-                dialogAssignTask();
+                sendPatrol();
             }
         });
 

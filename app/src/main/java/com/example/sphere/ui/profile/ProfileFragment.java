@@ -31,6 +31,7 @@ import com.example.sphere.ui.auth.LoginActivity;
 import com.example.sphere.ui.home.model.River;
 import com.example.sphere.ui.lapor.LaporFragment;
 import com.example.sphere.util.MySingleton;
+import com.google.android.gms.vision.text.Line;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -65,6 +66,13 @@ public class ProfileFragment extends Fragment {
         LLlaporan = root.findViewById(R.id.LLlaporan);
         LLsandi = root.findViewById(R.id.LLsandi);
         LLKeluar = root.findViewById(R.id.LLKeluar);
+        LinearLayout layLaporan =  root.findViewById(R.id.layLaporan);
+
+        if (sharedPreferences.getString("type", "").equals("user")) {
+            layLaporan.setVisibility(View.VISIBLE);
+        } else {
+            layLaporan.setVisibility(View.GONE);
+        }
 
         LLmyakun.setOnClickListener(new View.OnClickListener() {
             @Override

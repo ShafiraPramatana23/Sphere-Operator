@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.sphere.ui.auth.LoginActivity;
+import com.example.sphere.ui.patrol.PatrolActivity;
 import com.example.sphere.ui.profile.MyReportActivity;
 
 public class AlertActivity extends AppCompatActivity {
@@ -90,6 +91,20 @@ public class AlertActivity extends AppCompatActivity {
             });
         } else if (menu.equals("patrol")) {
             title.setText("Berhasil Update Patrol !");
+            description.setVisibility(View.GONE);
+            btnFinish.setText("Selesai");
+            back.setVisibility(View.GONE);
+
+            btnFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(AlertActivity.this, PatrolActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        } else if (menu.equals("assign")) {
+            title.setText("Berhasil Meng-assign Tugas !");
             description.setVisibility(View.GONE);
             btnFinish.setText("Selesai");
             back.setVisibility(View.GONE);

@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         NavigationUI.setupWithNavController(navView, navController);
         navView.setItemIconTintList(null);
 
-        String type = "patroli";
+        String type = sharedPreferences.getString("type", "");
 
         navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -100,6 +100,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 switch (id) {
                     case R.id.navigation_lapor:
                         if (type.equals("patroli")) {
+                            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+                            startActivity(intent);
+                            return false;
+                        } else if (type.equals("admin")) {
                             Intent intent = new Intent(MainActivity.this, ScanActivity.class);
                             startActivity(intent);
                             return false;

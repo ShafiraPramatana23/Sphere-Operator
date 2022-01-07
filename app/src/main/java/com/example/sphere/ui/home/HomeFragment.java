@@ -26,6 +26,8 @@ import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -37,6 +39,8 @@ import com.example.sphere.SplashActivity;
 import com.example.sphere.ui.auth.EditPasswordActivity;
 import com.example.sphere.ui.auth.LoginActivity;
 import com.example.sphere.ui.patrol.PatrolActivity;
+import com.example.sphere.ui.patrol.PatrolAdapter;
+import com.example.sphere.ui.patrol.model.Patrol;
 import com.example.sphere.ui.profile.MyReportActivity;
 import com.example.sphere.ui.scan.FormScanActivity;
 import com.example.sphere.ui.scan.ScanActivity;
@@ -48,7 +52,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Text;
 
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Locale;
@@ -64,15 +70,20 @@ public class HomeFragment extends Fragment {
     String latitude = "";
     String address = "";
     String token = "";
+    String type = "";
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
 
-    TextView tvAddress, tvDate, tvTime, tvSuhu, tvSuhuDesc, tvHumidity, tvPressure, tvWind, tvUvIndex, tvHeight, tvStatus, tvRiverName;
-    LinearLayout llLocation;
+    TextView tvAddress, tvDate, tvTime, tvSuhu, tvSuhuDesc, tvHumidity, tvPressure,
+            tvWind, tvUvIndex, tvHeight, tvStatus, tvRiverName, tvAllPatroli;
+    LinearLayout llLocation, llPatroli;
     ImageView iv;
     MultiWaveHeader waveHeader;
+    RecyclerView rvPatroli;
+    private PatrolAdapter adapterPatrol;
+    private ArrayList<Patrol> listPatrol = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -84,6 +95,8 @@ public class HomeFragment extends Fragment {
         longitude = sharedPreferences.getString("longitude", "");
         latitude = sharedPreferences.getString("latitude", "");
         token = sharedPreferences.getString("token", "");
+        type = sharedPreferences.getString("type", "");
+
         String name = sharedPreferences.getString("name", "");
 
         CardView cvWeather = root.findViewById(R.id.cvWeather);
@@ -103,14 +116,26 @@ public class HomeFragment extends Fragment {
         tvHeight = root.findViewById(R.id.tvHeight);
         tvStatus = root.findViewById(R.id.tvStatus);
         tvRiverName = root.findViewById(R.id.tvRiverName);
+        tvAllPatroli = root.findViewById(R.id.tvAllPatroli);
         iv = root.findViewById(R.id.iv);
+        rvPatroli = root.findViewById(R.id.rvPatrol);
+        llPatroli = root.findViewById(R.id.llPatroli);
         waveHeader = root.findViewById(R.id.waveHeader);
         waveHeader.start();
 
         tvName.setText(name);
 
         formatCalendar();
+        setAdapterPatrol();
+
         getRiverById();
+
+        if (type.equals("patroli")) {
+            llPatroli.setVisibility(View.VISIBLE);
+            getListPatroli();
+        } else {
+            llPatroli.setVisibility(View.GONE);
+        }
 
         tvAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,10 +145,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        ivNotif.setOnClickListener(new View.OnClickListener() {
+        tvAllPatroli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), PatrolActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
+
+        ivNotif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListNotifActivity.class);
                 getActivity().startActivity(intent);
             }
         });
@@ -172,6 +205,82 @@ public class HomeFragment extends Fragment {
         }, delay, period);
 
         return root;
+    }
+
+    private void getListPatroli() {
+        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+        progressDialog.setTitle("Tunggu ....");
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setIndeterminate(false);
+        progressDialog.show();
+        String uRl = "https://sphere-apps.herokuapp.com/api/river/report/task";
+
+        StringRequest request = new StringRequest(Request.Method.GET,
+                uRl,
+                (String response) -> {
+                    try {
+                        JSONArray arrRes = new JSONArray(response);
+                        for (int i = 0; i < arrRes.length(); i++) {
+                            JSONObject obj = arrRes.getJSONObject(i);
+                            String id = obj.getString("id");
+                            String rivers_id = obj.getString("rivers_id");
+                            String userId = obj.getString("user_id");
+                            String status = obj.getString("status");
+                            String description = obj.getString("description");
+                            String latitude = obj.getString("latitude");
+                            String longitude = obj.getString("longitude");
+                            String photo = obj.getString("photo");
+                            String task_date = obj.getString("task_date");
+                            String created_at = obj.getString("created_at");
+                            JSONObject river = obj.getJSONObject("river");
+                            String name = river.getString("name");
+
+                            if (i < 3) {
+                                listPatrol.add(new Patrol(id, rivers_id, userId, status, description, latitude, longitude, photo, task_date, created_at, name, false));
+                            }
+                        }
+                        adapterPatrol.notifyDataSetChanged();
+
+                    } catch (JSONException e) {
+                        System.out.println("ERROR CUY !!!"+e.toString());
+                        e.printStackTrace();
+                    }
+                    progressDialog.dismiss();
+                }, error -> {
+            try {
+                String body = new String(error.networkResponse.data, "UTF-8");
+                System.out.println("bods " + body);
+                Toast.makeText(getContext(),
+                        body, Toast.LENGTH_SHORT).show();
+            } catch (UnsupportedEncodingException e) {
+                System.out.println("ERROR CUY !!!"+e.toString());
+            }
+
+            progressDialog.dismiss();
+        }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Accept", "application/json");
+                params.put("Authorization", "Bearer " + token);
+                return params;
+            }
+        };
+        request.setRetryPolicy(
+                new DefaultRetryPolicy(10000,
+                        DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                        DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+
+        MySingleton.getmInstance(getContext()).
+                addToRequestQueue(request);
+    }
+
+    private void setAdapterPatrol() {
+        adapterPatrol = new PatrolAdapter(listPatrol, "home");
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        rvPatroli.setLayoutManager(layoutManager);
+        rvPatroli.setAdapter(adapterPatrol);
     }
 
     private void formatCalendar() {
