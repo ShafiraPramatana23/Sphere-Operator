@@ -22,6 +22,7 @@
         <activity android:name=".ui.home.ListNotifActivity"></activity>
         <activity android:name=".ui.auth.EditPasswordActivity" />
         <activity android:name=".ui.profile.MyReportActivity" />
+        <activity android:name=".ui.patrol.PatrolActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
