@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.example.sphere.DetailComplainActivity;
 import com.example.sphere.MainActivity;
 import com.example.sphere.R;
 import com.example.sphere.util.MySingleton;
@@ -116,6 +117,7 @@ public class LoginActivity extends AppCompatActivity {
                             editor.putString("token", jsonObject.getString("token"));
                             editor.putString("userId", userObj.getString("id"));
                             editor.putString("name", userObj.getString("name"));
+                            editor.putString("type", userObj.getString("type"));
                             editor.apply();
                             startActivity(new Intent(LoginActivity
                                     .this, MainActivity.class));

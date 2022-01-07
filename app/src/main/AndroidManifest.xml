@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.home.ListNotifActivity"></activity>
+        <activity android:name=".DetailComplainActivity"></activity>
+        <activity android:name=".ui.home.ListNotifActivity" />
         <activity android:name=".ui.auth.EditPasswordActivity" />
         <activity android:name=".ui.profile.MyReportActivity" />
 
@@ -66,9 +67,6 @@
         <activity
             android:name=".ui.auth.EditProfileActivity"
             android:screenOrientation="portrait" />
-
-
-
     </application>
 
 </manifest>
