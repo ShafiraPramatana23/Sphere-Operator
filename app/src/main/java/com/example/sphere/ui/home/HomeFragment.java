@@ -37,6 +37,8 @@ import com.example.sphere.SplashActivity;
 import com.example.sphere.ui.auth.EditPasswordActivity;
 import com.example.sphere.ui.auth.LoginActivity;
 import com.example.sphere.ui.profile.MyReportActivity;
+import com.example.sphere.ui.scan.FormScanActivity;
+import com.example.sphere.ui.scan.ScanActivity;
 import com.example.sphere.util.MySingleton;
 import com.scwang.wave.MultiWaveHeader;
 
@@ -108,6 +110,14 @@ public class HomeFragment extends Fragment {
 
         formatCalendar();
         getRiverById();
+
+        tvAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ScanActivity.class);
+                getActivity().startActivity(intent);
+            }
+        });
 
         ivNotif.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -271,7 +281,7 @@ public class HomeFragment extends Fragment {
                     }
                     progressDialog.dismiss();
                 }, error -> {
-
+            System.out.println("err river : " + error.toString());
             Toast.makeText(getContext(), error.toString(), Toast.LENGTH_SHORT).show();
             progressDialog.dismiss();
         }) {

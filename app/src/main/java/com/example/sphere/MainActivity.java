@@ -14,13 +14,16 @@ import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 
+import com.example.sphere.ui.scan.ScanActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -80,13 +83,36 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         OneSignal.initWithContext(this);
         OneSignal.setAppId(getString(R.string.one_signal_id));
 
+        sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(navView, navController);
         navView.setItemIconTintList(null);
 
-        sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        String type = "patroli";
+
+        navView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int id = item.getItemId();
+                switch (id) {
+                    case R.id.navigation_lapor:
+                        if (type.equals("patroli")) {
+                            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+                            startActivity(intent);
+                            return false;
+                        } else {
+                            navController.navigate(id);
+                            return true;
+                        }
+                    default:
+                        navController.navigate(id);
+                        return true;
+                }
+            }
+        });
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)

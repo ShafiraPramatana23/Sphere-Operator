@@ -88,6 +88,18 @@ public class AlertActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        } else if (menu.equals("patrol")) {
+            title.setText("Berhasil Update Patrol !");
+            description.setVisibility(View.GONE);
+            btnFinish.setText("Selesai");
+            back.setVisibility(View.GONE);
+
+            btnFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }
     }
 }

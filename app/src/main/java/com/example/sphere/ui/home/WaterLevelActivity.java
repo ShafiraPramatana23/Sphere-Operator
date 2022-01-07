@@ -122,7 +122,6 @@ public class WaterLevelActivity extends AppCompatActivity {
                     }
                     progressDialog.dismiss();
                 }, error -> {
-
             Toast.makeText(this, error.toString(), Toast.LENGTH_SHORT).show();
             progressDialog.dismiss();
         }) {
