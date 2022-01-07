@@ -67,8 +67,6 @@ public class DetailComplainActivity extends AppCompatActivity {
         token = sharedPreferences.getString("token", "");
         type = sharedPreferences.getString("type", "");
 
-        System.out.println( "type userr" + type);
-
         RelativeLayout btnAssigned = findViewById(R.id.btnAssign);
         RelativeLayout btnSolving = findViewById(R.id.btnSolving);
         LinearLayout llDetailSolving = findViewById(R.id.llDetailSolving);
@@ -85,11 +83,10 @@ public class DetailComplainActivity extends AppCompatActivity {
             llDetailSolving.setVisibility(View.GONE);
         }
 
-//        Intent intent = getIntent();
-//        id = intent.getStringExtra("id");
+        Intent intent = getIntent();
+        id = intent.getStringExtra("id");
 
-        id = String.valueOf(4);
-        getDataList(4);
+        getDataList(Integer.valueOf(id));
 
         ImageView ivBack = findViewById(R.id.ivBacks);
 
@@ -210,9 +207,7 @@ public class DetailComplainActivity extends AppCompatActivity {
                 (String response) -> {
                     try {
                         JSONArray arrRes = new JSONArray(response);
-                        System.out.println("ars " + arrRes.length());
                         for (int i = 0; i < arrRes.length(); i++) {
-                            System.out.println("hahaha " + arrRes.length());
                             JSONObject obj = arrRes.getJSONObject(i);
                             String idReport = obj.getString("id");
                             String userId = obj.getString("user_id");
@@ -225,8 +220,6 @@ public class DetailComplainActivity extends AppCompatActivity {
                             String latitude = obj.getString("latitude");
                             String longitude = obj.getString("longitude");
 
-                            System.out.println("hihihi " + arrRes.length());
-                            System.out.println("solving " + obj.get("solving"));
 
                             TextView tvTitle = findViewById(R.id.tvTitle);
                             TextView tvLocation = findViewById(R.id.tvLocation);
@@ -245,8 +238,6 @@ public class DetailComplainActivity extends AppCompatActivity {
                             RelativeLayout btnAssigned = findViewById(R.id.btnAssign);
                             RelativeLayout btnSolving = findViewById(R.id.btnSolving);
 
-//                            JSONObject objSolving = obj.getJSONObject(solving);
-//                            JSONObject objUser = obj.getJSONObject(user);
 
                             tvTitle.setText(title);
                             tvDate.setText(new DateFormatter().convertDate(date));
