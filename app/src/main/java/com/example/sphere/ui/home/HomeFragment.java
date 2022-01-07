@@ -36,6 +36,7 @@ import com.example.sphere.R;
 import com.example.sphere.SplashActivity;
 import com.example.sphere.ui.auth.EditPasswordActivity;
 import com.example.sphere.ui.auth.LoginActivity;
+import com.example.sphere.ui.patrol.PatrolActivity;
 import com.example.sphere.ui.profile.MyReportActivity;
 import com.example.sphere.ui.scan.FormScanActivity;
 import com.example.sphere.ui.scan.ScanActivity;
@@ -122,7 +123,7 @@ public class HomeFragment extends Fragment {
         ivNotif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ListNotifActivity.class);
+                Intent intent = new Intent(getActivity(), PatrolActivity.class);
                 getActivity().startActivity(intent);
             }
         });
