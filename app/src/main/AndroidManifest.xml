@@ -19,7 +19,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DetailComplainActivity"></activity>
+        <activity android:name=".ListComplainActivity"></activity>
+        <activity android:name=".DetailComplainActivity" />
         <activity android:name=".ui.home.ListNotifActivity" />
         <activity android:name=".ui.auth.EditPasswordActivity" />
         <activity android:name=".ui.profile.MyReportActivity" />
