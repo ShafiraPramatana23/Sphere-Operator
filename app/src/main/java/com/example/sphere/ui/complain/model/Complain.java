@@ -1,4 +1,4 @@
-package com.example.sphere;
+package com.example.sphere.ui.complain.model;
 
 public class Complain {
     String id;

@@ -25,10 +25,8 @@
         <activity android:name=".ui.scan.FormScanActivity"></activity>
         <activity android:name=".ui.scan.ScanActivity" />
         <activity android:name=".ui.home.ListNotifActivity" />
-        <activity android:name=".DetailComplainActivity"></activity>
-        <activity android:name=".ListComplainActivity"></activity>
-        <activity android:name=".DetailComplainActivity" />
-        <activity android:name=".ui.home.ListNotifActivity" />
+        <activity android:name=".ui.complain.DetailComplainActivity"></activity>
+        <activity android:name=".ui.complain.ListComplainActivity"></activity>
         <activity android:name=".ui.auth.EditPasswordActivity" />
         <activity android:name=".ui.profile.MyReportActivity" />
         <activity android:name=".ui.patrol.PatrolActivity" />

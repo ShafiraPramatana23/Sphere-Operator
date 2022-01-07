@@ -1,4 +1,4 @@
-package com.example.sphere;
+package com.example.sphere.ui.complain;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -17,14 +17,10 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
-import com.example.sphere.AlertActivity;
+import com.example.sphere.ui.complain.adapter.ListComplainAdapter;
 import com.example.sphere.MainActivity;
 import com.example.sphere.R;
-import com.example.sphere.ui.auth.EditPasswordActivity;
-import com.example.sphere.ui.home.WaterLevelActivity;
-import com.example.sphere.ui.home.model.Notif;
-import com.example.sphere.ui.profile.adapter.MyReportAdapter;
-import com.example.sphere.ui.profile.model.MyReportList;
+import com.example.sphere.ui.complain.model.Complain;
 import com.example.sphere.util.MySingleton;
 
 import org.json.JSONArray;

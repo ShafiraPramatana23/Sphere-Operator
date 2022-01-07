@@ -1,4 +1,4 @@
-package com.example.sphere.ui.complain;
+package com.example.sphere.ui.complain.model;
 
 public class Teknisi {
     String id;

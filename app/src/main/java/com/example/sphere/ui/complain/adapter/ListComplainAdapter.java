@@ -1,25 +1,23 @@
-package com.example.sphere;
+package com.example.sphere.ui.complain.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sphere.R;
-import com.example.sphere.ui.auth.RegisterActivity;
-import com.example.sphere.ui.profile.model.MyReportList;
+import com.example.sphere.ui.complain.DetailComplainActivity;
+import com.example.sphere.ui.complain.model.Complain;
 import com.example.sphere.util.DateFormatter;
 
 import java.util.ArrayList;

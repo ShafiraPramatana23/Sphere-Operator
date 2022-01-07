@@ -19,8 +19,8 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.example.sphere.MainActivity;
 import com.example.sphere.R;
+import com.example.sphere.ui.patrol.adapter.PatrolAdapter;
 import com.example.sphere.ui.patrol.model.Patrol;
-import com.example.sphere.ui.profile.adapter.MyReportAdapter;
 import com.example.sphere.util.MySingleton;
 
 import org.json.JSONArray;

@@ -1,4 +1,4 @@
-package com.example.sphere;
+package com.example.sphere.ui.complain;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -25,12 +24,10 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.example.sphere.ui.complain.Teknisi;
+import com.example.sphere.AlertActivity;
+import com.example.sphere.R;
 import com.example.sphere.ui.complain.adapter.TeknisiSpinnerAdapter;
-import com.example.sphere.ui.home.adapter.RiverSpinnerAdapter;
-import com.example.sphere.ui.lapor.adapter.SpinnerAdapter;
-import com.example.sphere.ui.profile.MyReportActivity;
-import com.example.sphere.ui.profile.model.MyReportList;
+import com.example.sphere.ui.complain.model.Teknisi;
 import com.example.sphere.util.DateFormatter;
 import com.example.sphere.util.MySingleton;
 
@@ -39,12 +36,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 
 public class DetailComplainActivity extends AppCompatActivity {
@@ -142,6 +135,8 @@ public class DetailComplainActivity extends AppCompatActivity {
     }
 
     private void actionSendTask() {
+        System.out.println("assign id: "+id);
+        System.out.println("assign selected teknis: "+selectedTeknisi);
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Meng-assign tugas ....");
         progressDialog.setCancelable(false);

@@ -10,8 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.example.sphere.R;
-import com.example.sphere.ui.complain.Teknisi;
-import com.example.sphere.ui.home.model.River;
+import com.example.sphere.ui.complain.model.Teknisi;
 
 import java.util.ArrayList;
 

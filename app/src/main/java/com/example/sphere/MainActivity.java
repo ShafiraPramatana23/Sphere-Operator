@@ -1,25 +1,21 @@
 package com.example.sphere;
 
 import android.Manifest;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 
+import com.example.sphere.ui.complain.ListComplainActivity;
 import com.example.sphere.ui.scan.ScanActivity;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.util.Log;
@@ -41,7 +37,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import org.json.JSONArray;
@@ -104,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                             startActivity(intent);
                             return false;
                         } else if (type.equals("admin")) {
-                            Intent intent = new Intent(MainActivity.this, ScanActivity.class);
+                            Intent intent = new Intent(MainActivity.this, ListComplainActivity.class);
                             startActivity(intent);
                             return false;
                         } else {

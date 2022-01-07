@@ -1,4 +1,4 @@
-package com.example.sphere.ui.patrol;
+package com.example.sphere.ui.patrol.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sphere.R;
 import com.example.sphere.ui.patrol.model.Patrol;
-import com.example.sphere.ui.profile.model.MyReportList;
 import com.example.sphere.util.DateFormatter;
 
 import java.util.ArrayList;
