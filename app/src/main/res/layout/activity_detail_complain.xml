@@ -25,17 +25,17 @@
                 android:layout_width="@dimen/_15sdp"
                 android:layout_height="@dimen/_13sdp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_back"/>
+                android:src="@drawable/ic_back" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:fontFamily="@font/redhat_medium"
+                android:text="Detail Laporan"
                 android:textColor="#565D70"
                 android:textSize="@dimen/_14sdp"
-                android:textStyle="bold"
-                android:fontFamily="@font/redhat_medium"
-                android:text="Detail Laporan"/>
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
@@ -43,7 +43,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/_2sdp"
-        android:background="@color/grey_light"/>
+        android:background="@color/grey_light" />
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -52,231 +52,237 @@
         app:cardElevation="@dimen/_2sdp"
         app:cardUseCompatPadding="true">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/_15sdp"
-            android:paddingVertical="@dimen/_15sdp">
-
-            <TextView
-                android:id="@+id/tvTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/redhat_medium"
-                android:text="Laporan Saya"
-                android:textColor="@color/green_main"
-                android:textSize="@dimen/_12sdp"
-                android:textStyle="bold" />
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="@dimen/_10sdp"
-                    android:layout_height="@dimen/_10sdp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_location"/>
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:paddingVertical="@dimen/_15sdp">
 
                 <TextView
-                    android:id="@+id/tvLocation"
+                    android:id="@+id/tvTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_5sdp"
-                    android:fontFamily="@font/redhat_regular"
-                    android:text="Jl Melati Raya, Malang"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp" />
-            </LinearLayout>
+                    android:fontFamily="@font/redhat_medium"
+                    android:text="Laporan Saya"
+                    android:textColor="@color/green_main"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp">
-
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/redhat_regular"
-                    android:text="20 - 12 - 2020 | 13:08"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp" />
-
-            </RelativeLayout>
-
-            <LinearLayout
-                android:id="@+id/llDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@color/grey_main"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Kategori"
-                    android:textColor="@color/green_main"
-                    android:textSize="@dimen/_10sdp" />
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tvCtg"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:fontFamily="@font/redhat_regular"
-                    android:text="Kebersihan Lingkungan"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp" />
+                    <ImageView
+                        android:layout_width="@dimen/_10sdp"
+                        android:layout_height="@dimen/_10sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_location" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Deskripsi"
-                    android:textColor="@color/green_main"
-                    android:textSize="@dimen/_10sdp" />
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:fontFamily="@font/redhat_regular"
+                        android:text="Jl Melati Raya, Malang"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvDesc"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:fontFamily="@font/redhat_regular"
-                    android:text="Penumpukan sampah di selokan, hingga menyumbat aliran air."
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Foto"
-                    android:textColor="@color/green_main"
-                    android:textSize="@dimen/_10sdp" />
-
-                <ImageView
-                    android:id="@+id/ivMaps"
-                    android:layout_width="@dimen/_160sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:src="@drawable/maps"
-                    android:layout_marginBottom="@dimen/_25sdp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llDetailSolving"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="vertical">
-
-                <View
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:background="@color/grey_main"/>
-
-                <TextView
-                    android:id="@+id/lblUser"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Petugas"
-                    android:textColor="@color/green_main"
-                    android:textSize="@dimen/_10sdp" />
+                    android:layout_marginTop="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/tvPetugas"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvDate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/redhat_regular"
+                        android:text="20 - 12 - 2020 | 13:08"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDetail"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:fontFamily="@font/redhat_regular"
-                    android:text="Andi"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/fotoSolv"
-                    android:layout_width="wrap_content"
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/grey_main" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Kategori"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tvCtg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/redhat_regular"
+                        android:text="Kebersihan Lingkungan"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Deskripsi"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tvDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/redhat_regular"
+                        android:text="Penumpukan sampah di selokan, hingga menyumbat aliran air."
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Foto"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <ImageView
+                        android:id="@+id/ivMaps"
+                        android:layout_width="@dimen/_160sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginBottom="@dimen/_25sdp"
+                        android:src="@drawable/maps" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llDetailSolving"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Foto"
-                    android:textColor="@color/green_main"
-                    android:textSize="@dimen/_10sdp" />
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/ivImageSolving"
-                    android:layout_width="@dimen/_160sdp"
-                    android:layout_height="@dimen/_100sdp"
-                    android:layout_marginTop="@dimen/_3sdp"
-                    android:src="@drawable/maps"
-                    android:layout_marginBottom="@dimen/_10sdp"/>
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/grey_main" />
 
-                <TextView
-                    android:id="@+id/statusSolving"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_6sdp"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Dalam Proses"
-                    android:textColor="@color/yellow_main"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/_13sdp" />
+                    <TextView
+                        android:id="@+id/lblUser"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Petugas"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_10sdp" />
 
+                    <TextView
+                        android:id="@+id/tvPetugas"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:fontFamily="@font/redhat_regular"
+                        android:text="Andi"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/fotoSolv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Foto"
+                        android:textColor="@color/green_main"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <ImageView
+                        android:id="@+id/ivImageSolving"
+                        android:layout_width="@dimen/_160sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:src="@drawable/maps" />
+
+                    <TextView
+                        android:id="@+id/statusSolving"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_6sdp"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Dalam Proses"
+                        android:textColor="@color/yellow_main"
+                        android:textSize="@dimen/_13sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnAssign"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginHorizontal="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/rounded_yellow">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Pilih Petugas"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/btnSolving"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginHorizontal="@dimen/_30sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/rounded_yellow">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:fontFamily="@font/redhat_medium"
+                        android:text="Ubah"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_10sdp" />
+                </RelativeLayout>
             </LinearLayout>
-
-            <RelativeLayout
-                android:id="@+id/btnAssign"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/rounded_yellow">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Pilih Petugas"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10sdp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/btnSolving"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_30sdp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginHorizontal="@dimen/_30sdp"
-                android:layout_marginBottom="@dimen/_20sdp"
-                android:background="@drawable/rounded_yellow">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/redhat_medium"
-                    android:text="Ubah"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_10sdp" />
-            </RelativeLayout>
-        </LinearLayout>
+        </ScrollView>
     </androidx.cardview.widget.CardView>
 
 </LinearLayout>

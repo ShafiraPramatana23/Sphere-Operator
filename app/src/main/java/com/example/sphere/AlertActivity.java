@@ -115,6 +115,18 @@ public class AlertActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        } else if (menu.equals("solving")) {
+            title.setText("Berhasil Meng-update Data !");
+            description.setVisibility(View.GONE);
+            btnFinish.setText("Selesai");
+            back.setVisibility(View.GONE);
+
+            btnFinish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
         }
     }
 }

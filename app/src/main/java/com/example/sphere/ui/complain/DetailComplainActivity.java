@@ -385,4 +385,10 @@ public class DetailComplainActivity extends AppCompatActivity {
         MySingleton.getmInstance(DetailComplainActivity.this).
                 addToRequestQueue(request);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getDataList(Integer.valueOf(id));
+    }
 }

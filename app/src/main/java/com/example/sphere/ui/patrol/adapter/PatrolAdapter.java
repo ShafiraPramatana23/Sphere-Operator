@@ -1,6 +1,7 @@
 package com.example.sphere.ui.patrol.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +10,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sphere.R;
+import com.example.sphere.ui.complain.DetailComplainActivity;
 import com.example.sphere.ui.patrol.model.Patrol;
+import com.example.sphere.ui.scan.FormScanActivity;
 import com.example.sphere.util.DateFormatter;
 
 import java.util.ArrayList;
@@ -85,6 +89,17 @@ public class PatrolAdapter extends RecyclerView.Adapter<PatrolAdapter.UserViewHo
             holder.llDetail.setVisibility(View.VISIBLE);
             holder.ivBack.setRotation(90);
         }
+
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (dataList.get(position).getStatus().equals("null")) {
+                    Intent m = new Intent(context, FormScanActivity.class);
+                    m.putExtra("id", dataList.get(position).getId());
+                    context.startActivity(m);
+                }
+            }
+        });
     }
 
     @Override
@@ -96,6 +111,7 @@ public class PatrolAdapter extends RecyclerView.Adapter<PatrolAdapter.UserViewHo
         private TextView tvTitle, tvDate, tvLocation, tvDesc, tvStatus;
         private LinearLayout llDetail;
         private ImageView ivBack, ivMaps;
+        private CardView cv;
 
         public UserViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -108,6 +124,7 @@ public class PatrolAdapter extends RecyclerView.Adapter<PatrolAdapter.UserViewHo
             tvDesc = itemView.findViewById(R.id.tvDesc);
             ivBack = itemView.findViewById(R.id.ivBack);
             ivMaps = itemView.findViewById(R.id.ivMaps);
+            cv = itemView.findViewById(R.id.cv);
         }
     }
 }
