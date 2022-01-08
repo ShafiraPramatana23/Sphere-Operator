@@ -96,6 +96,15 @@ public class DetailComplainActivity extends AppCompatActivity {
                 dialogAssignTask();
             }
         });
+
+        btnSolving.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent m = new Intent(DetailComplainActivity.this, FormTeknisiActivity.class);
+                m.putExtra("id", id);
+                startActivity(m);
+            }
+        });
     }
 
     private void dialogAssignTask() {

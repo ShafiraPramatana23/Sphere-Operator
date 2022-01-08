@@ -36,4 +36,15 @@ public class DateFormatter {
             return "Date";
         }
     }
+
+    public String convertDatePatroli(String dt) {
+        SimpleDateFormat fmt = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat fmt2 = new SimpleDateFormat("dd MMM yyyy", new Locale("ID"));
+        try {
+            Date date = fmt.parse(dt);
+            return fmt2.format(date);
+        } catch(ParseException pe) {
+            return "Date";
+        }
+    }
 }

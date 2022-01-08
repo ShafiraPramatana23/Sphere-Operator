@@ -25,14 +25,24 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.scan.FormScanActivity"></activity>
-        <activity android:name=".ui.scan.ScanActivity" />
-        <activity android:name=".ui.home.ListNotifActivity" />
-        <activity android:name=".ui.complain.DetailComplainActivity"></activity>
-        <activity android:name=".ui.complain.ListComplainActivity"></activity>
-        <activity android:name=".ui.auth.EditPasswordActivity" />
-        <activity android:name=".ui.profile.MyReportActivity" />
-        <activity android:name=".ui.patrol.PatrolActivity" />
+        <activity android:name=".ui.scan.FormScanActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.scan.ScanActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.home.ListNotifActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.complain.DetailComplainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.complain.ListComplainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.complain.FormTeknisiActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.auth.EditPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.profile.MyReportActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.patrol.PatrolActivity"
+            android:screenOrientation="portrait" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

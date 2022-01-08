@@ -93,6 +93,12 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                             return false;
                         } else if (type.equals("admin")) {
                             Intent intent = new Intent(MainActivity.this, ListComplainActivity.class);
+                            intent.putExtra("type", "admin");
+                            startActivity(intent);
+                            return false;
+                        } else if (type.equals("teknisi")) {
+                            Intent intent = new Intent(MainActivity.this, ListComplainActivity.class);
+                            intent.putExtra("type", "teknisi");
                             startActivity(intent);
                             return false;
                         } else {

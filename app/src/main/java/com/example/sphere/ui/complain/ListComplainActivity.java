@@ -78,7 +78,12 @@ public class ListComplainActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setIndeterminate(false);
         progressDialog.show();
-        String uRl = "https://sphere-apps.herokuapp.com/api/report/all";
+        String uRl = "";
+        if (type.equals("admin")) {
+            uRl = "https://sphere-apps.herokuapp.com/api/report/all";
+        } else if (type.equals("teknisi")) {
+            uRl = "https://sphere-apps.herokuapp.com/api/report/task";
+        }
 
         StringRequest request = new StringRequest(Request.Method.GET,
                 uRl,

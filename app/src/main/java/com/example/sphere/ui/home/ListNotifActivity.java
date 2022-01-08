@@ -49,12 +49,13 @@ public class ListNotifActivity extends AppCompatActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
+        String type = sharedPreferences.getString("type", "");
         System.out.println("hei token: "+token);
 
         ImageView ivBack = findViewById(R.id.ivBack);
         recyclerView = findViewById(R.id.rv);
 
-        adapter = new ListNotifAdapter(list);
+        adapter = new ListNotifAdapter(list, type);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(adapter);
@@ -89,8 +90,9 @@ public class ListNotifActivity extends AppCompatActivity {
                             String title = obj.getString("status");
                             String message = obj.getString("message");
                             String date = obj.getString("created_at");
+                            String reportId = obj.getString("report_id");
 
-                            list.add(new Notif(id, date, message, title));
+                            list.add(new Notif(id, date, message, title, reportId));
                         }
 
                         adapter.notifyDataSetChanged();

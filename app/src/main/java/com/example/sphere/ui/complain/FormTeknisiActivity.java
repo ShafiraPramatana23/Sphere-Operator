@@ -1,11 +1,4 @@
-package com.example.sphere.ui.scan;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-import androidx.core.content.FileProvider;
+package com.example.sphere.ui.complain;
 
 import android.Manifest;
 import android.app.Activity;
@@ -29,6 +22,13 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -56,7 +56,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FormScanActivity extends AppCompatActivity {
+public class FormTeknisiActivity extends AppCompatActivity {
 
     String[] status = {"Bersih", "Tidak Bersih"};
 
@@ -78,11 +78,9 @@ public class FormScanActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_form_scan);
+        setContentView(R.layout.activity_form_teknisi);
 
         RelativeLayout btnSubmit = findViewById(R.id.btnSubmit);
-        spin = findViewById(R.id.spinner);
-        etDesc = findViewById(R.id.etDeskripsi);
         llNoteUpload = findViewById(R.id.llNoteUpload);
         llPhoto = findViewById(R.id.llPhoto);
         iv = findViewById(R.id.iv);
@@ -93,8 +91,6 @@ public class FormScanActivity extends AppCompatActivity {
         longitude = sharedPreferences.getString("longitude", "");
         latitude = sharedPreferences.getString("latitude", "");
 
-        setAdapterSpinner();
-
         Intent intent = getIntent();
         id = intent.getStringExtra("id");
 //        id = "1";
@@ -102,7 +98,7 @@ public class FormScanActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendPatrol();
+                sendSolving();
             }
         });
 
@@ -119,13 +115,13 @@ public class FormScanActivity extends AppCompatActivity {
                             Manifest.permission.CAMERA
                     )
                     ) {
-                        ActivityCompat.requestPermissions(FormScanActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
+                        ActivityCompat.requestPermissions(FormTeknisiActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
                     } else {
-                        ActivityCompat.requestPermissions(FormScanActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
+                        ActivityCompat.requestPermissions(FormTeknisiActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
                     }
                 } else {
                     if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(FormScanActivity.this,
+                        ActivityCompat.requestPermissions(FormTeknisiActivity.this,
                                 new String[]{
                                         Manifest.permission.READ_EXTERNAL_STORAGE,
                                         Manifest.permission.WRITE_EXTERNAL_STORAGE
@@ -156,49 +152,14 @@ public class FormScanActivity extends AppCompatActivity {
         });
     }
 
-    private void dialogAssignTask() {
-        final Dialog dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_assign_task);
-        dialog.setCancelable(false);
-        dialog.setCanceledOnTouchOutside(false);
-        Window window = dialog.getWindow();
-        window.setLayout(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-        RelativeLayout rlSubmit = dialog.findViewById(R.id.btnSubmit);
-        Spinner spin = dialog.findViewById(R.id.spinner);
-
-        String[] petugas = {"Hayo", "Siapa"};
-
-        SpinnerAdapter aa = new SpinnerAdapter(this, R.layout.item_spinner, petugas);
-        spin.setAdapter(aa);
-
-        rlSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        dialog.show();
-    }
-
-    private void sendPatrol() {
-        int selected = (spin.getSelectedItem().toString().equals("Bersih")) ? 1 : 2;
-
-        System.out.println("id sungai : "+id);
-        System.out.println("id sungai : "+etDesc.getText().toString());
-        System.out.println("id sungai : "+latitude);
-        System.out.println("id sungai : "+longitude);
-        System.out.println("id sungai : "+file.getPath());
-
+    private void sendSolving() {
         final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setTitle("Mengirim Data Sungai ....");
+        progressDialog.setTitle("Mengirim perubahan data ....");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setIndeterminate(false);
         progressDialog.show();
-        String uRl = "https://sphere-apps.herokuapp.com/api/river/report/"+id;
+        String uRl = "https://sphere-apps.herokuapp.com/api/report/solved/"+id;
         StringRequest request = new StringRequest(Request.Method.POST,
                 uRl,
                 (String response) -> {
@@ -209,13 +170,13 @@ public class FormScanActivity extends AppCompatActivity {
                             Toast.makeText(this, jsonObject.getString("message"), Toast.LENGTH_SHORT).show();
                         } else {
                             Intent m = new Intent(this, AlertActivity.class);
-                            m.putExtra("menu", "patrol");
+                            m.putExtra("menu", "solving");
                             startActivity(m);
                             finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        System.out.println("error anjay form patrol : "+e.toString());
+                        System.out.println("error anjay form solving : "+e.toString());
                     }
                     progressDialog.dismiss();
                 }, error -> {
@@ -225,7 +186,7 @@ public class FormScanActivity extends AppCompatActivity {
                 Toast.makeText(this, body, Toast.LENGTH_SHORT).show();
             } catch (UnsupportedEncodingException e) {
                 // exception
-                System.out.println("error form patrol : "+e.toString());
+                System.out.println("error form solving : "+e.toString());
             }
 
             progressDialog.dismiss();
@@ -233,8 +194,6 @@ public class FormScanActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() {
                 HashMap<String, String> param = new HashMap<>();
-                param.put("status", String.valueOf(selected));
-                param.put("description", etDesc.getText().toString());
                 param.put("latitude", latitude);
                 param.put("longitude", longitude);
                 param.put("photo", file.getPath());
@@ -254,11 +213,6 @@ public class FormScanActivity extends AppCompatActivity {
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         MySingleton.getmInstance(this).addToRequestQueue(request);
-    }
-
-    private void setAdapterSpinner() {
-        SpinnerAdapter aa = new SpinnerAdapter(this, R.layout.item_spinner, status);
-        spin.setAdapter(aa);
     }
 
     private void takePicture() throws IOException {

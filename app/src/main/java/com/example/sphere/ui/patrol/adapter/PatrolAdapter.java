@@ -47,7 +47,7 @@ public class PatrolAdapter extends RecyclerView.Adapter<PatrolAdapter.UserViewHo
                 .into(holder.ivMaps);
 
         holder.tvTitle.setText(dataList.get(position).getName());
-        holder.tvDate.setText(new DateFormatter().convertDate(dataList.get(position).getTask_date()));
+        holder.tvDate.setText(new DateFormatter().convertDatePatroli(dataList.get(position).getTask_date()));
         holder.tvDesc.setText(dataList.get(position).getDescription());
 
         holder.ivBack.setOnClickListener(new View.OnClickListener() {

@@ -6,12 +6,24 @@ public class Notif {
     String message;
     String status;
 
-    public Notif(String id, String date, String message, String status) {
+    public Notif(String id, String date, String message, String status, String reportId) {
         this.id = id;
         this.date = date;
         this.message = message;
         this.status = status;
+        this.reportId = reportId;
     }
+
+    public String getReportId() {
+        return reportId;
+    }
+
+    public void setReportId(String reportId) {
+        this.reportId = reportId;
+    }
+
+    String reportId;
+
 
     public String getId() {
         return id;
