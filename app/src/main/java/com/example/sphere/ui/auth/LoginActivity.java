@@ -22,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.example.sphere.MainActivity;
 import com.example.sphere.R;
 import com.example.sphere.util.MySingleton;
+import com.onesignal.OneSignal;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -93,6 +94,9 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void login(String email, String password) {
+        String playerId = OneSignal.getDeviceState().getUserId();
+        System.out.println("playerid : "+playerId);
+
         final ProgressDialog progressDialog = new ProgressDialog(
                 LoginActivity.this);
         progressDialog.setTitle("Masuk Akun Anda....");
@@ -136,6 +140,7 @@ public class LoginActivity extends AppCompatActivity {
                 HashMap<String, String> param = new HashMap<>();
                 param.put("email", email);
                 param.put("password", password);
+                param.put("player", playerId);
                 return param;
             }
         };

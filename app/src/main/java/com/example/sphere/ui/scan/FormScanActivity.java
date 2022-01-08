@@ -96,8 +96,8 @@ public class FormScanActivity extends AppCompatActivity {
         setAdapterSpinner();
 
         Intent intent = getIntent();
-//        id = intent.getStringExtra("menu");
-        id = "1";
+        id = intent.getStringExtra("id");
+//        id = "1";
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override

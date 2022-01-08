@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment {
     private String date;
 
     TextView tvAddress, tvDate, tvTime, tvSuhu, tvSuhuDesc, tvHumidity, tvPressure,
-            tvWind, tvUvIndex, tvHeight, tvStatus, tvRiverName, tvAllPatroli;
+            tvWind, tvUvIndex, tvHeight, tvStatus, tvRiverName, tvAllPatroli, tvRole;
     LinearLayout llLocation, llPatroli;
     ImageView iv;
     MultiWaveHeader waveHeader;
@@ -102,6 +102,8 @@ public class HomeFragment extends Fragment {
         tvStatus = root.findViewById(R.id.tvStatus);
         tvRiverName = root.findViewById(R.id.tvRiverName);
         tvAllPatroli = root.findViewById(R.id.tvAllPatroli);
+        tvRole = root.findViewById(R.id.tvRole);
+
         iv = root.findViewById(R.id.iv);
         rvPatroli = root.findViewById(R.id.rvPatrol);
         llPatroli = root.findViewById(R.id.llPatroli);
@@ -116,8 +118,15 @@ public class HomeFragment extends Fragment {
         getRiverById();
 
         if (type.equals("patroli")) {
+            tvRole.setText(" (Patroli)");
             llPatroli.setVisibility(View.VISIBLE);
             getListPatroli();
+        } else if (type.equals("teknisi")) {
+            tvRole.setText(" (Teknisi)");
+            llPatroli.setVisibility(View.GONE);
+        } else if (type.equals("admin")) {
+            tvRole.setText(" (Admin)");
+            llPatroli.setVisibility(View.GONE);
         } else {
             llPatroli.setVisibility(View.GONE);
         }
@@ -225,7 +234,13 @@ public class HomeFragment extends Fragment {
                                 listPatrol.add(new Patrol(id, rivers_id, userId, status, description, latitude, longitude, photo, task_date, created_at, name, false));
                             }
                         }
-                        adapterPatrol.notifyDataSetChanged();
+
+                        if (listPatrol.size() == 0) {
+                            llPatroli.setVisibility(View.GONE);
+                        } else {
+                            llPatroli.setVisibility(View.VISIBLE);
+                            adapterPatrol.notifyDataSetChanged();
+                        }
 
                     } catch (JSONException e) {
                         System.out.println("ERROR CUY !!!"+e.toString());
