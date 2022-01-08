@@ -152,7 +152,7 @@ public class DetailComplainActivity extends AppCompatActivity {
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setIndeterminate(false);
         progressDialog.show();
-        String uRl = "api/report/assign/"+id;
+        String uRl = "https://sphere-apps.herokuapp.com/api/report/assign/"+id;
         StringRequest request = new StringRequest(Request.Method.POST,
                 uRl,
                 (String response) -> {
@@ -282,7 +282,7 @@ public class DetailComplainActivity extends AppCompatActivity {
                                 }
                                 if(!obj.get("user").toString().equals("null")) {
                                     btnAssigned.setVisibility(View.GONE);
-                                }else{
+                                } else{
                                     tvUser.setVisibility(View.GONE);
                                     lblUser.setVisibility(View.GONE);
                                     btnAssigned.setVisibility(View.VISIBLE);
