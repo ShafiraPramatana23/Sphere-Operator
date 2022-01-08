@@ -13,4 +13,18 @@
         android:layout_centerInParent="true"
         android:src="@drawable/logo" />
 
+    <TextView
+        android:id="@+id/tvVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:fontFamily="@font/redhat_medium"
+        android:gravity="center_horizontal"
+        android:paddingHorizontal="@dimen/_50sdp"
+        android:text="v2.0"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_12sdp" />
+
 </RelativeLayout>
