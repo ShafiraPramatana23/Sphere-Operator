@@ -49,7 +49,7 @@ public class DetailComplainActivity extends AppCompatActivity {
 
     TeknisiSpinnerAdapter adapterSpinTeknisi;
 
-    private ArrayList<Teknisi> listTeknisi = new ArrayList<>();;
+    private ArrayList<Teknisi> listTeknisi = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,13 +66,13 @@ public class DetailComplainActivity extends AppCompatActivity {
 
         getTeknisi();
 
-        if(type.equals("admin")){
+        if (type.equals("admin")) {
             btnAssigned.setVisibility(View.VISIBLE);
             btnSolving.setVisibility(View.GONE);
-        }else if(type.equals("teknisi")){
+        } else if (type.equals("teknisi")) {
             btnAssigned.setVisibility(View.GONE);
             btnSolving.setVisibility(View.VISIBLE);
-        } else if(type.equals("user")){
+        } else if (type.equals("user")) {
             llDetailSolving.setVisibility(View.GONE);
         }
 
@@ -144,15 +144,15 @@ public class DetailComplainActivity extends AppCompatActivity {
     }
 
     private void actionSendTask() {
-        System.out.println("assign id: "+id);
-        System.out.println("assign selected teknis: "+selectedTeknisi);
+        System.out.println("assign id: " + id);
+        System.out.println("assign selected teknis: " + selectedTeknisi);
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Meng-assign tugas ....");
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setIndeterminate(false);
         progressDialog.show();
-        String uRl = "https://sphere-apps.herokuapp.com/api/report/assign/"+id;
+        String uRl = "https://sphere-apps.herokuapp.com/api/report/assign/" + id;
         StringRequest request = new StringRequest(Request.Method.POST,
                 uRl,
                 (String response) -> {
@@ -255,7 +255,7 @@ public class DetailComplainActivity extends AppCompatActivity {
                                     .skipMemoryCache(true)
                                     .into(ivMaps);
 
-                            if(obj.get("solving") != null && !obj.get("solving").toString().equals("null")){
+                            if (obj.get("solving") != null && !obj.get("solving").toString().equals("null")) {
                                 JSONObject solving = obj.getJSONObject("solving");
                                 JSONObject user = obj.getJSONObject("user");
                                 ivMapsSolving.setVisibility(View.VISIBLE);
@@ -266,34 +266,38 @@ public class DetailComplainActivity extends AppCompatActivity {
                                         .into(ivMaps);
                                 tvUser.setText(user.getString("name"));
                                 tvStatus.setText("Selesai");
-                            }else{
+                            } else {
+                                JSONObject user = obj.getJSONObject("user");
+
                                 ivMapsSolving.setVisibility(View.GONE);
                                 lblFotoSolv.setVisibility(View.GONE);
                                 btnAssigned.setVisibility(View.GONE);
-                                if(obj.get("user").toString().equals("null")) {
+                                if (obj.get("user").toString().equals("null")) {
                                     tvStatus.setText("");
+                                } else {
+                                    tvUser.setText(user.getString("name"));
                                 }
                             }
 
-                            if(type.equals("admin")){
+                            if (type.equals("admin")) {
                                 btnSolving.setVisibility(View.GONE);
-                                if(obj.get("solving") != null && !obj.get("solving").toString().equals("null")) {
+                                if (obj.get("solving") != null && !obj.get("solving").toString().equals("null")) {
                                     btnAssigned.setVisibility(View.GONE);
                                 }
-                                if(!obj.get("user").toString().equals("null")) {
+                                if (!obj.get("user").toString().equals("null")) {
                                     btnAssigned.setVisibility(View.GONE);
-                                } else{
+                                } else {
                                     tvUser.setVisibility(View.GONE);
                                     lblUser.setVisibility(View.GONE);
                                     btnAssigned.setVisibility(View.VISIBLE);
                                 }
-                            }else if(type.equals("teknisi")){
+                            } else if (type.equals("teknisi")) {
                                 btnAssigned.setVisibility(View.GONE);
                                 btnSolving.setVisibility(View.VISIBLE);
-                                if(obj.get("solving") != null && !obj.get("solving").toString().equals("null")) {
+                                if (obj.get("solving") != null && !obj.get("solving").toString().equals("null")) {
                                     btnSolving.setVisibility(View.GONE);
                                 }
-                            } else if(type.equals("user")){
+                            } else if (type.equals("user")) {
                                 llDetailSolving.setVisibility(View.GONE);
                             }
                         }

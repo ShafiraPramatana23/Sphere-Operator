@@ -244,13 +244,13 @@
                 </LinearLayout>
 
                 <RelativeLayout
+                    android:visibility="gone"
                     android:id="@+id/btnAssign"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginHorizontal="@dimen/_30sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
                     android:background="@drawable/rounded_yellow">
 
                     <TextView
@@ -269,6 +269,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_alignParentBottom="true"
                     android:layout_marginHorizontal="@dimen/_30sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:background="@drawable/rounded_yellow">
 

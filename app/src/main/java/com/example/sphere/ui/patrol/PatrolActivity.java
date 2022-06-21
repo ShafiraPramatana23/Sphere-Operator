@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -35,6 +36,8 @@ import java.util.Map;
 public class PatrolActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private LinearLayout llEmpty;
+
     private PatrolAdapter adapter;
     private ArrayList<Patrol> list;
     private String token = "";
@@ -55,6 +58,7 @@ public class PatrolActivity extends AppCompatActivity {
 
         ImageView ivBack = findViewById(R.id.ivBack);
         recyclerView = findViewById(R.id.rv);
+        llEmpty = findViewById(R.id.llEmpty);
 
         adapter = new PatrolAdapter(list, "");
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PatrolActivity.this);
@@ -104,10 +108,13 @@ public class PatrolActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
+                        llEmpty.setVisibility(View.GONE);
 
                     } catch (JSONException e) {
                         System.out.println("ERROR CUY !!!"+e.toString());
                         e.printStackTrace();
+                        llEmpty.setVisibility(View.VISIBLE);
+
                     }
                     progressDialog.dismiss();
                 }, error -> {

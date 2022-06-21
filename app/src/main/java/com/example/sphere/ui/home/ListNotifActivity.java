@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,6 +36,7 @@ import java.util.Map;
 public class ListNotifActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private LinearLayout llEmpty;
     private ListNotifAdapter adapter;
     private ArrayList<Notif> list;
 
@@ -54,6 +56,7 @@ public class ListNotifActivity extends AppCompatActivity {
 
         ImageView ivBack = findViewById(R.id.ivBack);
         recyclerView = findViewById(R.id.rv);
+        llEmpty = findViewById(R.id.llEmpty);
 
         adapter = new ListNotifAdapter(list, type);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
@@ -96,10 +99,11 @@ public class ListNotifActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-
+                        llEmpty.setVisibility(View.GONE);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         System.out.println("OMG: " + e.toString());
+                        llEmpty.setVisibility(View.VISIBLE);
                     }
                     progressDialog.dismiss();
                 }, error -> {

@@ -1,5 +1,6 @@
 package com.example.sphere.ui.home;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -15,10 +16,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -58,6 +61,7 @@ public class HomeFragment extends Fragment {
     String address = "";
     String token = "";
     String type = "";
+    Boolean isRefresh = false;
 
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
@@ -69,9 +73,12 @@ public class HomeFragment extends Fragment {
     ImageView iv;
     MultiWaveHeader waveHeader;
     RecyclerView rvPatroli;
+    SwipeRefreshLayout refreshLayout;
+
     private PatrolAdapter adapterPatrol;
     private ArrayList<Patrol> listPatrol = new ArrayList<>();
 
+    @SuppressLint("ResourceType")
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         homeViewModel =
@@ -116,22 +123,22 @@ public class HomeFragment extends Fragment {
 
         formatCalendar();
         setAdapterPatrol();
+        checkRole();
 
         getRiverById();
 
-        if (type.equals("patroli")) {
-            tvRole.setText(" (Patroli)");
-            llPatroli.setVisibility(View.VISIBLE);
-            getListPatroli();
-        } else if (type.equals("teknisi")) {
-            tvRole.setText(" (Teknisi)");
-            llPatroli.setVisibility(View.GONE);
-        } else if (type.equals("admin")) {
-            tvRole.setText(" (Admin)");
-            llPatroli.setVisibility(View.GONE);
-        } else {
-            llPatroli.setVisibility(View.GONE);
-        }
+        refreshLayout = root.findViewById(R.id.swipe_to_refresh_layout);
+//        refreshLayout.setColorSchemeResources(
+//                ContextCompat.getColor(getContext(), R.color.green_main), ContextCompat.getColor(getContext(), R.color.green_light));
+
+        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                isRefresh = true;
+                getRiverById();
+                checkRole();
+            }
+        });
 
         tvAddress.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,6 +208,22 @@ public class HomeFragment extends Fragment {
         }, delay, period);
 
         return root;
+    }
+
+    private void checkRole() {
+        if (type.equals("patroli")) {
+            tvRole.setText(" (Patroli)");
+            llPatroli.setVisibility(View.VISIBLE);
+            getListPatroli();
+        } else if (type.equals("teknisi")) {
+            tvRole.setText(" (Teknisi)");
+            llPatroli.setVisibility(View.GONE);
+        } else if (type.equals("admin")) {
+            tvRole.setText(" (Admin)");
+            llPatroli.setVisibility(View.GONE);
+        } else {
+            llPatroli.setVisibility(View.GONE);
+        }
     }
 
     private void getListPatroli() {
@@ -410,6 +433,10 @@ public class HomeFragment extends Fragment {
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
 
         MySingleton.getmInstance(getContext()).addToRequestQueue(request);
+
+        if (isRefresh) {
+            refreshLayout.setRefreshing(false);
+        }
     }
 
 }

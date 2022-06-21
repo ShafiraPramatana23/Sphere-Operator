@@ -11,6 +11,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -35,6 +36,8 @@ import java.util.Map;
 public class ListComplainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
+    private LinearLayout llEmpty;
+
     private ListComplainAdapter adapter;
     private ArrayList<Complain> list;
     private String token = "";
@@ -55,6 +58,7 @@ public class ListComplainActivity extends AppCompatActivity {
 
         ImageView ivBack = findViewById(R.id.ivBack);
         recyclerView = findViewById(R.id.rv);
+        llEmpty = findViewById(R.id.llEmpty);
 
         adapter = new ListComplainAdapter(list);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ListComplainActivity.this);
@@ -115,9 +119,11 @@ public class ListComplainActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
+                        llEmpty.setVisibility(View.GONE);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        llEmpty.setVisibility(View.VISIBLE);
                     }
                     progressDialog.dismiss();
                 }, error -> {

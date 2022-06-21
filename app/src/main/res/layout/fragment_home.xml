@@ -1,46 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipe_to_refresh_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    android:layout_height="match_parent">
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_110sdp"
-        android:background="@drawable/header_home" />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingVertical="@dimen/_12sdp">
+        tools:context=".ui.home.HomeFragment">
 
         <ImageView
-            android:id="@+id/ivNotif"
-            android:layout_width="@dimen/_25sdp"
-            android:layout_height="@dimen/_20sdp"
-            android:layout_gravity="right"
-            android:layout_marginRight="@dimen/_12sdp"
-            android:src="@drawable/ic_notif" />
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_110sdp"
+            android:background="@drawable/header_home" />
 
-        <androidx.core.widget.NestedScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/_5sdp">
+            android:orientation="vertical"
+            android:paddingVertical="@dimen/_12sdp">
 
-            <LinearLayout
+            <ImageView
+                android:id="@+id/ivNotif"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_gravity="right"
+                android:layout_marginRight="@dimen/_12sdp"
+                android:src="@drawable/ic_notif" />
+
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/_5sdp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_40sdp"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="@dimen/_12sdp">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/_12sdp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -52,413 +57,415 @@
                             android:textSize="@dimen/_14sdp"
                             android:textStyle="bold" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:id="@+id/tvName"
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_centerInParent="true"
-                            android:fontFamily="@font/redhat_medium"
-                            android:text="-"
-                            android:textColor="@color/green_main"
-                            android:textSize="@dimen/_14sdp"
-                            android:textStyle="bold" />
+                            android:orientation="horizontal">
 
-                        <TextView
-                        android:id="@+id/tvRole"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:fontFamily="@font/redhat_medium"
-                        android:text=""
-                        android:textColor="@color/green_main"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold" />
+                            <TextView
+                                android:id="@+id/tvName"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/redhat_medium"
+                                android:text="-"
+                                android:textColor="@color/green_main"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/tvRole"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:fontFamily="@font/redhat_medium"
+                                android:text=""
+                                android:textColor="@color/green_main"
+                                android:textSize="@dimen/_14sdp"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/llLocation"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/_12sdp">
-
-                    <ImageView
-                        android:layout_width="@dimen/_12sdp"
-                        android:layout_height="@dimen/_12sdp"
-                        android:layout_gravity="center"
-                        android:src="@drawable/ic_location" />
-
-                    <TextView
-                        android:id="@+id/tvAddress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="@dimen/_5sdp"
-                        android:fontFamily="@font/redhat_regular"
-                        android:text="Blimbing, Malang"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cvWeather"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    app:cardCornerRadius="@dimen/_10sdp"
-                    app:cardElevation="@dimen/_5sdp"
-                    app:cardUseCompatPadding="true">
-
                     <LinearLayout
+                        android:id="@+id/llLocation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        android:gravity="center"
                         android:orientation="horizontal"
-                        android:padding="@dimen/_10sdp">
+                        android:paddingHorizontal="@dimen/_12sdp"
+                        android:visibility="gone">
 
-                        <LinearLayout
-                            android:layout_width="0dp"
+                        <ImageView
+                            android:layout_width="@dimen/_12sdp"
+                            android:layout_height="@dimen/_12sdp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_location" />
+
+                        <TextView
+                            android:id="@+id/tvAddress"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
-                            android:layout_weight="0.3"
-                            android:orientation="vertical">
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:fontFamily="@font/redhat_regular"
+                            android:text="Blimbing, Malang"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+                    </LinearLayout>
 
-                            <ImageView
-                                android:id="@+id/iv"
-                                android:layout_width="@dimen/_50sdp"
-                                android:layout_height="@dimen/_50sdp"
-                                android:layout_gravity="center"
-                                android:background="@drawable/ic_cloud" />
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvWeather"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="@dimen/_5sdp"
+                        app:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_5sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:padding="@dimen/_10sdp">
 
                             <LinearLayout
-                                android:layout_width="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:orientation="horizontal">
+                                android:layout_weight="0.3"
+                                android:orientation="vertical">
 
-                                <TextView
-                                    android:id="@+id/tvSuhu"
+                                <ImageView
+                                    android:id="@+id/iv"
+                                    android:layout_width="@dimen/_50sdp"
+                                    android:layout_height="@dimen/_50sdp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/ic_cloud" />
+
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tvSuhu"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/redhat_medium"
+                                        android:text="-"
+                                        android:textColor="@color/green_main"
+                                        android:textSize="@dimen/_24sdp" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="start"
+                                        android:layout_marginLeft="@dimen/_2sdp"
+                                        android:fontFamily="@font/redhat_medium"
+                                        android:text="o"
+                                        android:textColor="@color/green_main"
+                                        android:textSize="@dimen/_10sdp"
+                                        android:textStyle="bold" />
+                                </LinearLayout>
+
+                                <TextView
+                                    android:id="@+id/tvSuhuDesc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
                                     android:fontFamily="@font/redhat_medium"
                                     android:text="-"
-                                    android:textColor="@color/green_main"
-                                    android:textSize="@dimen/_24sdp" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:fontFamily="@font/redhat_medium"
-                                    android:layout_gravity="start"
-                                    android:layout_marginLeft="@dimen/_2sdp"
-                                    android:text="o"
-                                    android:textStyle="bold"
                                     android:textColor="@color/green_main"
                                     android:textSize="@dimen/_10sdp" />
                             </LinearLayout>
 
-                            <TextView
-                                android:id="@+id/tvSuhuDesc"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/redhat_medium"
-                                android:text="-"
-                                android:textColor="@color/green_main"
-                                android:textSize="@dimen/_10sdp" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="@dimen/_15sdp"
-                            android:layout_weight="0.7"
-                            android:gravity="right"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvDate"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                android:fontFamily="@font/redhat_medium"
-                                android:text="Kamis, 31 Desember 2020"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_10sdp" />
-
-                            <TextView
-                                android:id="@+id/tvTime"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="@dimen/_5sdp"
-                                android:fontFamily="@font/redhat_medium"
-                                android:text="18:08"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_10sdp" />
-
                             <LinearLayout
-                                android:layout_width="match_parent"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="@dimen/_10sdp"
-                                android:background="@drawable/rounded_form_grey"
-                                android:orientation="vertical"
-                                android:padding="@dimen/_10sdp">
+                                android:layout_marginLeft="@dimen/_15sdp"
+                                android:layout_weight="0.7"
+                                android:gravity="right"
+                                android:orientation="vertical">
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
+                                <TextView
+                                    android:id="@+id/tvDate"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="horizontal">
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:fontFamily="@font/redhat_medium"
+                                    android:text="Kamis, 31 Desember 2020"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp" />
 
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.5"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_regular"
-                                            android:text="Kelembaban"
-                                            android:textColor="@color/black"
-                                            android:textSize="@dimen/_9sdp" />
-
-                                        <TextView
-                                            android:id="@+id/tvHumidity"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_medium"
-                                            android:text="-"
-                                            android:textColor="@color/green_main"
-                                            android:textSize="@dimen/_10sdp" />
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="0dp"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="0.5"
-                                        android:orientation="vertical">
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_regular"
-                                            android:text="Tekanan Udara"
-                                            android:textColor="@color/black"
-                                            android:textSize="@dimen/_9sdp" />
-
-                                        <TextView
-                                            android:id="@+id/tvPressure"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_medium"
-                                            android:text="-"
-                                            android:textColor="@color/green_main"
-                                            android:textSize="@dimen/_10sdp" />
-                                    </LinearLayout>
-                                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/tvTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="@dimen/_5sdp"
+                                    android:fontFamily="@font/redhat_medium"
+                                    android:text="18:08"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_10sdp"
-                                    android:orientation="horizontal">
+                                    android:background="@drawable/rounded_form_grey"
+                                    android:orientation="vertical"
+                                    android:padding="@dimen/_10sdp">
 
                                     <LinearLayout
-                                        android:layout_width="0dp"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.5"
-                                        android:orientation="vertical">
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
+                                        <LinearLayout
+                                            android:layout_width="0dp"
                                             android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_regular"
-                                            android:text="UV Index"
-                                            android:textColor="@color/black"
-                                            android:textSize="@dimen/_9sdp" />
+                                            android:layout_weight="0.5"
+                                            android:orientation="vertical">
 
-                                        <TextView
-                                            android:id="@+id/tvUvIndex"
-                                            android:layout_width="wrap_content"
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_regular"
+                                                android:text="Kelembaban"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_9sdp" />
+
+                                            <TextView
+                                                android:id="@+id/tvHumidity"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_medium"
+                                                android:text="-"
+                                                android:textColor="@color/green_main"
+                                                android:textSize="@dimen/_10sdp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
                                             android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_medium"
-                                            android:text="-"
-                                            android:textColor="@color/green_main"
-                                            android:textSize="@dimen/_10sdp" />
+                                            android:layout_weight="0.5"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_regular"
+                                                android:text="Tekanan Udara"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_9sdp" />
+
+                                            <TextView
+                                                android:id="@+id/tvPressure"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_medium"
+                                                android:text="-"
+                                                android:textColor="@color/green_main"
+                                                android:textSize="@dimen/_10sdp" />
+                                        </LinearLayout>
                                     </LinearLayout>
 
                                     <LinearLayout
-                                        android:layout_width="0dp"
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:layout_weight="0.5"
-                                        android:orientation="vertical">
+                                        android:layout_marginTop="@dimen/_10sdp"
+                                        android:orientation="horizontal">
 
-                                        <TextView
-                                            android:layout_width="wrap_content"
+                                        <LinearLayout
+                                            android:layout_width="0dp"
                                             android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_regular"
-                                            android:text="Angin"
-                                            android:textColor="@color/black"
-                                            android:textSize="@dimen/_9sdp" />
+                                            android:layout_weight="0.5"
+                                            android:orientation="vertical">
 
-                                        <TextView
-                                            android:id="@+id/tvWind"
-                                            android:layout_width="wrap_content"
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_regular"
+                                                android:text="UV Index"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_9sdp" />
+
+                                            <TextView
+                                                android:id="@+id/tvUvIndex"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_medium"
+                                                android:text="-"
+                                                android:textColor="@color/green_main"
+                                                android:textSize="@dimen/_10sdp" />
+                                        </LinearLayout>
+
+                                        <LinearLayout
+                                            android:layout_width="0dp"
                                             android:layout_height="wrap_content"
-                                            android:fontFamily="@font/redhat_medium"
-                                            android:text="-"
-                                            android:textColor="@color/green_main"
-                                            android:textSize="@dimen/_10sdp" />
+                                            android:layout_weight="0.5"
+                                            android:orientation="vertical">
+
+                                            <TextView
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_regular"
+                                                android:text="Angin"
+                                                android:textColor="@color/black"
+                                                android:textSize="@dimen/_9sdp" />
+
+                                            <TextView
+                                                android:id="@+id/tvWind"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="wrap_content"
+                                                android:fontFamily="@font/redhat_medium"
+                                                android:text="-"
+                                                android:textColor="@color/green_main"
+                                                android:textSize="@dimen/_10sdp" />
+                                        </LinearLayout>
                                     </LinearLayout>
                                 </LinearLayout>
                             </LinearLayout>
                         </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:visibility="gone"
-                    android:id="@+id/llPatroli"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_15sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:orientation="vertical">
+                    </androidx.cardview.widget.CardView>
 
                     <LinearLayout
+                        android:id="@+id/llPatroli"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:fontFamily="@font/redhat_medium"
-                            android:text="List Patroli"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <TextView
-                            android:id="@+id/tvAllPatroli"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.5"
-                            android:paddingVertical="@dimen/_5sdp"
-                            android:gravity="end"
-                            android:fontFamily="@font/redhat_regular"
-                            android:text="Lihat Semua"
-                            android:textColor="@color/green_main"
-                            android:textSize="@dimen/_12sdp" />
-                    </LinearLayout>
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rvPatrol"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:nestedScrollingEnabled="false" />
-
-                </LinearLayout>
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cvRiver"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_200sdp"
-                    android:layout_marginHorizontal="@dimen/_5sdp"
-                    app:cardCornerRadius="@dimen/_15sdp"
-                    app:cardElevation="@dimen/_5sdp"
-                    app:cardUseCompatPadding="true">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvRiverName"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:paddingVertical="@dimen/_10sdp"
-                            android:fontFamily="@font/redhat_medium"
-                            android:text="Sungai A"
-                            android:textColor="@color/green_main"
-                            android:textSize="@dimen/_12sdp" />
-
-                        <RelativeLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
-                            <com.scwang.wave.MultiWaveHeader
-                                android:id="@+id/waveHeader"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:scaleY="-1"
-                                app:mwhCloseColor="@color/green_light"
-                                app:mwhColorAlpha="0.45"
-                                app:mwhGradientAngle="45"
-                                app:mwhProgress="0.5"
-                                app:mwhStartColor="@color/green_main"
-                                app:mwhVelocity="1"
-                                app:mwhWaveHeight="@dimen/_20sdp"
-                                app:mwhWaves="MultiWave" />
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/redhat_medium"
+                                android:paddingVertical="@dimen/_5sdp"
+                                android:text="List Patroli"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp" />
 
-                            <LinearLayout
+                            <TextView
+                                android:id="@+id/tvAllPatroli"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.5"
+                                android:fontFamily="@font/redhat_regular"
+                                android:gravity="end"
+                                android:paddingVertical="@dimen/_5sdp"
+                                android:text="Lihat Semua"
+                                android:textColor="@color/green_main"
+                                android:textSize="@dimen/_12sdp" />
+                        </LinearLayout>
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvPatrol"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:nestedScrollingEnabled="false" />
+
+                    </LinearLayout>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvRiver"
+                        app:cardCornerRadius="@dimen/_15sdp"
+                        app:cardElevation="@dimen/_5sdp"
+                        app:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_marginHorizontal="@dimen/_5sdp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvRiverName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerInParent="true"
-                                android:orientation="vertical">
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/redhat_medium"
+                                android:paddingVertical="@dimen/_10sdp"
+                                android:text="Sungai A"
+                                android:textColor="@color/green_main"
+                                android:textSize="@dimen/_12sdp" />
 
-                                <TextView
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <com.scwang.wave.MultiWaveHeader
+                                    android:id="@+id/waveHeader"
+                                    app:mwhCloseColor="@color/green_light"
+                                    app:mwhColorAlpha="0.45"
+                                    app:mwhGradientAngle="45"
+                                    app:mwhProgress="0.5"
+                                    app:mwhStartColor="@color/green_main"
+                                    app:mwhVelocity="1"
+                                    app:mwhWaveHeight="@dimen/_20sdp"
+                                    app:mwhWaves="MultiWave"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:scaleY="-1" />
+
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginBottom="@dimen/_3sdp"
-                                    android:fontFamily="@font/redhat_medium"
-                                    android:text="Ketinggian Air"
-                                    android:textColor="@color/grey_dark"
-                                    android:textSize="@dimen/_10sdp" />
+                                    android:layout_centerInParent="true"
+                                    android:orientation="vertical">
 
-                                <TextView
-                                    android:id="@+id/tvHeight"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/redhat_medium"
-                                    android:text="0"
-                                    android:textColor="@color/grey_dark"
-                                    android:textSize="@dimen/_20sdp"
-                                    android:textStyle="bold" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginBottom="@dimen/_3sdp"
+                                        android:fontFamily="@font/redhat_medium"
+                                        android:text="Ketinggian Air"
+                                        android:textColor="@color/grey_dark"
+                                        android:textSize="@dimen/_10sdp" />
 
-                                <TextView
-                                    android:id="@+id/tvStatus"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/redhat_medium"
-                                    android:text="(Status)"
-                                    android:textColor="@color/grey_dark"
-                                    android:textSize="@dimen/_14sdp" />
+                                    <TextView
+                                        android:id="@+id/tvHeight"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/redhat_medium"
+                                        android:text="0"
+                                        android:textColor="@color/grey_dark"
+                                        android:textSize="@dimen/_20sdp"
+                                        android:textStyle="bold" />
 
-                            </LinearLayout>
-                        </RelativeLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
+                                    <TextView
+                                        android:id="@+id/tvStatus"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:fontFamily="@font/redhat_medium"
+                                        android:text="(Status)"
+                                        android:textColor="@color/grey_dark"
+                                        android:textSize="@dimen/_14sdp" />
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </LinearLayout>
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

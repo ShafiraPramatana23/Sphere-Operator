@@ -111,8 +111,7 @@ public class FormTeknisiActivity extends AppCompatActivity {
                 ) != PackageManager.PERMISSION_GRANTED
                 ) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(
-                            getParent(),
-                            Manifest.permission.CAMERA
+                            FormTeknisiActivity.this, Manifest.permission.CAMERA
                     )
                     ) {
                         ActivityCompat.requestPermissions(FormTeknisiActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);

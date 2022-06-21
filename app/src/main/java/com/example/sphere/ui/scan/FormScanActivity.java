@@ -115,8 +115,7 @@ public class FormScanActivity extends AppCompatActivity {
                 ) != PackageManager.PERMISSION_GRANTED
                 ) {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(
-                            getParent(),
-                            Manifest.permission.CAMERA
+                            FormScanActivity.this, Manifest.permission.CAMERA
                     )
                     ) {
                         ActivityCompat.requestPermissions(FormScanActivity.this, new String[]{Manifest.permission.CAMERA}, CAMERA_REQUEST);
@@ -190,7 +189,7 @@ public class FormScanActivity extends AppCompatActivity {
         System.out.println("id sungai : "+etDesc.getText().toString());
         System.out.println("id sungai : "+latitude);
         System.out.println("id sungai : "+longitude);
-        System.out.println("id sungai : "+file.getPath());
+//        System.out.println("id sungai : "+file.getPath());
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Mengirim Data Sungai ....");
