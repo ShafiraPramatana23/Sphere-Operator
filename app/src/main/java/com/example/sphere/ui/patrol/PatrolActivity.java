@@ -108,8 +108,12 @@ public class PatrolActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-                        llEmpty.setVisibility(View.GONE);
 
+                        if (arrRes.length() == 0) {
+                            llEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            llEmpty.setVisibility(View.GONE);
+                        }
                     } catch (JSONException e) {
                         System.out.println("ERROR CUY !!!"+e.toString());
                         e.printStackTrace();

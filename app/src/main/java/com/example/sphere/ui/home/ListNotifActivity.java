@@ -87,6 +87,7 @@ public class ListNotifActivity extends AppCompatActivity {
                 (String response) -> {
                     try {
                         JSONArray arrRes = new JSONArray(response);
+
                         for (int i = 0; i < arrRes.length(); i++) {
                             JSONObject obj = arrRes.getJSONObject(i);
                             String id = obj.getString("id");
@@ -99,7 +100,12 @@ public class ListNotifActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-                        llEmpty.setVisibility(View.GONE);
+
+                        if (arrRes.length() == 0) {
+                            llEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            llEmpty.setVisibility(View.GONE);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         System.out.println("OMG: " + e.toString());

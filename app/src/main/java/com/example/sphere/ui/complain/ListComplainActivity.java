@@ -119,8 +119,12 @@ public class ListComplainActivity extends AppCompatActivity {
                         }
 
                         adapter.notifyDataSetChanged();
-                        llEmpty.setVisibility(View.GONE);
 
+                        if (arrRes.length() == 0) {
+                            llEmpty.setVisibility(View.VISIBLE);
+                        } else {
+                            llEmpty.setVisibility(View.GONE);
+                        }
                     } catch (JSONException e) {
                         e.printStackTrace();
                         llEmpty.setVisibility(View.VISIBLE);
