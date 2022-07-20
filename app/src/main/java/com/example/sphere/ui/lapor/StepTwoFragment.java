@@ -391,7 +391,7 @@ public class StepTwoFragment extends Fragment {
                 param.put("longitude", longitude);
                 param.put("address", address);
                 param.put("description", data.getDesc());
-                param.put("image", file.getPath());
+                param.put("image", (file == null) ? "" : file.getPath());
                 return param;
             }
 

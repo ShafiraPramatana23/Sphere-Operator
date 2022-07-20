@@ -39,6 +39,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.sphere.AlertActivity;
 import com.example.sphere.BuildConfig;
 import com.example.sphere.R;
+import com.example.sphere.ui.lapor.StepOneFragment;
 import com.example.sphere.ui.lapor.adapter.SpinnerAdapter;
 import com.example.sphere.util.ImageUtils;
 import com.example.sphere.util.MySingleton;
@@ -98,7 +99,11 @@ public class FormTeknisiActivity extends AppCompatActivity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                sendSolving();
+                if (file == null) {
+                    Toast.makeText(FormTeknisiActivity.this, "Upload foto terlebih dahulu!", Toast.LENGTH_SHORT).show();
+                } else {
+                    sendSolving();
+                }
             }
         });
 

@@ -140,14 +140,6 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        tvAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ScanActivity.class);
-                getActivity().startActivity(intent);
-            }
-        });
-
         tvAllPatroli.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

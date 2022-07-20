@@ -236,7 +236,7 @@ public class FormScanActivity extends AppCompatActivity {
                 param.put("description", etDesc.getText().toString());
                 param.put("latitude", latitude);
                 param.put("longitude", longitude);
-                param.put("photo", file.getPath());
+                param.put("photo", (file == null) ? "" : file.getPath()) ;
                 return param;
             }
 
