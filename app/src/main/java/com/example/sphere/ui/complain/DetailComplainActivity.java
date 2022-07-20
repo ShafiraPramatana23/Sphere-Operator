@@ -205,14 +205,15 @@ public class DetailComplainActivity extends AppCompatActivity {
         progressDialog.setIndeterminate(false);
         progressDialog.show();
         String uRl = "https://sphere-apps.herokuapp.com/api/report/" + id;
+        System.out.println("idd: "+id);
 
         StringRequest request = new StringRequest(Request.Method.GET,
                 uRl,
                 (String response) -> {
                     try {
                         JSONArray arrRes = new JSONArray(response);
-                        for (int i = 0; i < arrRes.length(); i++) {
-                            JSONObject obj = arrRes.getJSONObject(i);
+//                        for (int i = 0; i < arrRes.length(); i++) {
+                            JSONObject obj = arrRes.getJSONObject(0);
                             String idReport = obj.getString("id");
                             String userId = obj.getString("user_id");
                             String title = obj.getString("title");
@@ -263,7 +264,7 @@ public class DetailComplainActivity extends AppCompatActivity {
                                         .load(solving.getString("photo"))
                                         .diskCacheStrategy(DiskCacheStrategy.NONE)
                                         .skipMemoryCache(true)
-                                        .into(ivMaps);
+                                        .into(ivMapsSolving);
                                 tvUser.setText(user.getString("name"));
                                 tvStatus.setText("Selesai");
                             } else {
@@ -300,7 +301,7 @@ public class DetailComplainActivity extends AppCompatActivity {
                             } else if (type.equals("user")) {
                                 llDetailSolving.setVisibility(View.GONE);
                             }
-                        }
+//                        }
 
                     } catch (JSONException e) {
                         e.printStackTrace();

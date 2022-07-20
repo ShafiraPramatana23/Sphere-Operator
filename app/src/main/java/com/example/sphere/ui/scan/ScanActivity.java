@@ -1,6 +1,8 @@
 package com.example.sphere.ui.scan;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -22,6 +24,10 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.journeyapps.barcodescanner.ScanContract;
+import com.journeyapps.barcodescanner.ScanOptions;
 
 import java.io.IOException;
 
@@ -47,11 +53,6 @@ public class ScanActivity extends AppCompatActivity {
                 finish();
             }
         });
-    }
-
-    private void initialiseDetectorsAndSources() {
-
-        Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
@@ -62,22 +63,40 @@ public class ScanActivity extends AppCompatActivity {
                 .setAutoFocusEnabled(true) //you should add this feature
                 .build();
 
+        /*ScanOptions options = new ScanOptions();
+        options.setDesiredBarcodeFormats(ScanOptions.QR_CODE);
+        options.setPrompt("Volume up to flash on");
+        options.setCameraId(0);
+        options.setBeepEnabled(true);
+        options.setOrientationLocked(true);
+        options.setCaptureActivity(CaptureAct.class);
+        barLaucher.launch(options);*/
+    }
+
+    ActivityResultLauncher<ScanOptions> barLaucher = registerForActivityResult(new ScanContract(), result -> {
+        try {
+            if (result.getContents() != null) {
+                String id = result.getContents();
+                System.out.println("id sungai : " + id);
+            /*Intent m = new Intent(ScanActivity.this, FormScanActivity.class);
+            m.putExtra("id", id);
+            startActivity(m);
+            finish();*/
+
+            }
+        } catch (Exception ex) {
+            System.out.println("otokee: "+ex.toString());
+        }
+    });
+
+    private void initialiseDetectorsAndSources() {
+
+        Toast.makeText(getApplicationContext(), "Barcode scanner started", Toast.LENGTH_SHORT).show();
+
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
-                try {
-                    if (ActivityCompat.checkSelfPermission(ScanActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        cameraSource.start(surfaceView.getHolder());
-                    } else {
-                        ActivityCompat.requestPermissions(ScanActivity.this, new
-                                String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-
-
+                checkPermissionSurface();
             }
 
             @Override
@@ -94,6 +113,20 @@ public class ScanActivity extends AppCompatActivity {
         barcodeDetect();
     }
 
+    private void checkPermissionSurface() {
+        try {
+            if (ActivityCompat.checkSelfPermission(ScanActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                cameraSource.start(surfaceView.getHolder());
+            } else {
+                ActivityCompat.requestPermissions(ScanActivity.this, new
+                        String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     private void barcodeDetect() {
         barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
             @Override
@@ -105,7 +138,7 @@ public class ScanActivity extends AppCompatActivity {
             public void receiveDetections(Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-                    System.out.println("id sungai : "+barcodes.valueAt(0).displayValue);
+                    System.out.println("id sungai : " + barcodes.valueAt(0).displayValue);
                     String id = barcodes.valueAt(0).displayValue;
                     Intent m = new Intent(ScanActivity.this, FormScanActivity.class);
                     m.putExtra("id", id);
@@ -132,9 +165,10 @@ public class ScanActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
-        if (requestCode == REQUEST_CAMERA_PERMISSION){
-            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                barcodeDetect();
+        if (requestCode == REQUEST_CAMERA_PERMISSION) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                barcodeDetect();
+                checkPermissionSurface();
                 System.out.println("HEY ALHAMDULILLAH");
             }
         }

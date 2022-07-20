@@ -59,7 +59,7 @@ public class ListNotifAdapter extends RecyclerView.Adapter<ListNotifAdapter.User
             public void onClick(View v) {
                 if (!type.equals("user")) {
                     Intent m = new Intent(context, DetailComplainActivity.class);
-                    m.putExtra("id", dataList.get(position).getId());
+                    m.putExtra("id", dataList.get(position).getReportId());
                     context.startActivity(m);
                 }
             }

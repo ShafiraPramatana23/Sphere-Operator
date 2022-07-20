@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.sphere"
-        minSdkVersion 16
+        minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -46,6 +46,7 @@ dependencies {
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.volley:volley:1.2.0'
     implementation 'com.scwang.wave:MultiWaveHeader:1.0.0-andx'
+    implementation 'com.journeyapps:zxing-android-embedded:4.3.0'
 
     implementation 'com.mapbox.mapboxsdk:mapbox-android-sdk:8.5.1'
     implementation 'com.mapbox.mapboxsdk:mapbox-android-plugin-locationlayer:0.5.0'

@@ -403,10 +403,16 @@ public class HomeFragment extends Fragment {
 
                         if (status.equals("Aman")) {
                             waveHeader.setProgress(0.25F);
+                            waveHeader.setStartColor(ContextCompat.getColor(getContext(), R.color.green_main));
+                            waveHeader.setCloseColor(ContextCompat.getColor(getContext(), R.color.green_light));
                         } else if (status.equals("Siaga")) {
                             waveHeader.setProgress(0.5F);
-                        } else if (status.equals("Bahaya")) {
+                            waveHeader.setStartColor(ContextCompat.getColor(getContext(), R.color.orange_dark));
+                            waveHeader.setCloseColor(ContextCompat.getColor(getContext(), R.color.orange_light));
+                        } else if (status.equals("Bahaya") || status.equals("danger")) {
                             waveHeader.setProgress(1F);
+                            waveHeader.setStartColor(ContextCompat.getColor(getContext(), R.color.red_dark));
+                            waveHeader.setCloseColor(ContextCompat.getColor(getContext(), R.color.red_light));
                         }
                         waveHeader.start();
 

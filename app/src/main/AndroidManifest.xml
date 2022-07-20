@@ -25,10 +25,16 @@
         android:supportsRtl="true"
         android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
+
         <activity android:name=".ui.scan.FormScanActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".ui.scan.ScanActivity"
             android:screenOrientation="portrait" />
+        <activity android:name=".ui.scan.CaptureAct"
+            android:screenOrientation="portrait"
+            android:stateNotNeeded="true"
+            android:theme="@style/zxing_CaptureTheme"/>
+
         <activity android:name=".ui.home.ListNotifActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.complain.DetailComplainActivity"
